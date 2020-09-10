@@ -1,4 +1,4 @@
-var file = document.createElement("script");
-file.type = "text/javascript";
-file.src = "src/filename";
-document.head.appendChild(file);
+var drawing = document.createElement("script");
+drawing.type = "text/javascript";
+drawing.src = "src/drawing.js";
+document.head.appendChild(drawing);
