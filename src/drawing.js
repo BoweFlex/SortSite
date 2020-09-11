@@ -5,9 +5,7 @@ sortVis.style = "border:1px #000000;"
 
 var ctx = sortVis.getContext("2d");
 
-var randomColor = Math.floor(Math.random() * 16777215).toString(16);
-var hash = "#";
-var ranCol = hash.concat(randomColor);
+let nums = [1, 4, 3, 2];
 
 function drawBar(ctx, upperLeftX, upperLeftY, width, height, color) {
     ctx.save();
@@ -16,11 +14,49 @@ function drawBar(ctx, upperLeftX, upperLeftY, width, height, color) {
     ctx.restore();
 }
 
-drawBar(
-    this.ctx,
-    0,
-    0,
-    200,
-    300,
-    ranCol
+var Barchart = function(options) {
+    this.options = options;
+    this.canvas = options.canvas;
+    this.ctx = this.canvas.getContext("2d");
+
+    var maxValue = 0;
+    for (var item in this.options.data) {
+        maxValue = Math.max(maxValue, this.options.data[item])
+    }
+
+    this.draw = function() {
+        var canvasActualHeight = this.canvas.height - 20;
+        var canvasActualWidth = this.canvas.width - 20;
+        
+        var barIndex = 0;
+        var barNums = this.options.data.length;
+        var barWidth = canvasActualWidth / barNums;
+
+        for (item in this.options.data) {
+            var val = this.options.data[item];
+            var barHeight = Math.round(val * canvasActualHeight / maxValue);
+            var randomColor = Math.floor(Math.random() * 16777215).toString(16);
+            var hash = "#";
+            var ranCol = hash.concat(randomColor);
+
+            drawBar(
+                this.ctx,
+                barIndex * barWidth,
+                this.canvas.height - barHeight,
+                barWidth,
+                barHeight,
+                ranCol
+            );
+
+            barIndex++;
+        }
+    }
+}
+
+var bars = new Barchart(
+    {
+    canvas: sortVis,
+    data: nums
+    }
 );
+bars.draw();
