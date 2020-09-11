@@ -60,3 +60,29 @@ var bars = new Barchart(
     }
 );
 bars.draw();
+
+function insertionSort(options) {
+    this.options = options;
+
+    for (var item in this.options.data) {
+        var value = this.options.data[item];
+        var comp = item;
+
+        while ((comp > 0) && (this.options.data[comp - 1] > value)) {
+            this.options.data[comp] = this.options.data[comp - 1];
+            comp--;
+        }
+        this.options.data[comp] = value;
+
+        var sortBar = new Barchart(
+            {
+                canvas: sortVis,
+                data: this.options.data
+            }
+        );
+    }
+}
+
+function callSort() {
+    insertionSort(nums);
+}
