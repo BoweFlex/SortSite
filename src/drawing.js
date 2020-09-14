@@ -8,10 +8,10 @@ var ctx = sortVis.getContext("2d");
 let nums = [1, 4, 3, 2, 6, 9, 12, 8, 10, 7, 11];
 
 function drawBar(ctx, upperLeftX, upperLeftY, width, height, color) {
-    ctx.save();
+    //ctx.save();
     ctx.fillStyle = color;
     ctx.fillRect(upperLeftX, upperLeftY, width, height);
-    ctx.restore();
+    //ctx.restore();
 }
 
 var Barchart = function(options) {
@@ -65,10 +65,8 @@ function insertionSort(options) {
     this.options = options;
 
     for (item in this.options.data) {
-        alert("hi");
         var value = this.options.data[item];
         var comp = item;
-        alert("hello");
 
         while ((comp > 0) && (this.options.data[comp - 1] > value)) {
             this.options.data[comp] = this.options.data[comp - 1];
@@ -82,9 +80,14 @@ function insertionSort(options) {
                 data: this.options.data
             }
         );
+        sortBar.draw();
     }
 }
 
 function callSort() {
-    insertionSort(nums);
+    insertionSort(
+        {
+            data: nums
+        }
+    );
 }
