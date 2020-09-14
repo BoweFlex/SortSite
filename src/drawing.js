@@ -29,6 +29,7 @@ var Barchart = function(options) {
         var canvasActualWidth = this.canvas.width - 20;
         
         var barIndex = 0;
+        alert(this.options.data);
         var barNums = this.options.data.length;
         var barWidth = canvasActualWidth / barNums;
 
@@ -83,7 +84,9 @@ function insertionSort(options) {
                 data: this.options.data
             }
         );
-        sortBar.draw();
+        setTimeout(
+            function(){ sortBar.draw();},
+            1000);
     }
 }
 
