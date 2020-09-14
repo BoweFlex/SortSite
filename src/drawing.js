@@ -29,7 +29,6 @@ var Barchart = function(options) {
         var canvasActualWidth = this.canvas.width - 20;
         
         var barIndex = 0;
-        alert(this.options.data);
         var barNums = this.options.data.length;
         var barWidth = canvasActualWidth / barNums;
 
