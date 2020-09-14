@@ -5,7 +5,7 @@ sortVis.style = "border:1px #000000;"
 
 var ctx = sortVis.getContext("2d");
 
-let nums = [1, 4, 3, 2];
+let nums = [1, 4, 3, 2, 6, 9, 12, 8, 10, 7, 11];
 
 function drawBar(ctx, upperLeftX, upperLeftY, width, height, color) {
     ctx.save();
@@ -64,9 +64,11 @@ bars.draw();
 function insertionSort(options) {
     this.options = options;
 
-    for (var item in this.options.data) {
+    for (item in this.options.data) {
+        alert("hi");
         var value = this.options.data[item];
         var comp = item;
+        alert("hello");
 
         while ((comp > 0) && (this.options.data[comp - 1] > value)) {
             this.options.data[comp] = this.options.data[comp - 1];
