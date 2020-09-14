@@ -63,6 +63,8 @@ bars.draw();
 
 function insertionSort(options) {
     this.options = options;
+    this.canvas = options.canvas;
+    this.ctx = this.canvas.getContext("2d");
 
     for (item in this.options.data) {
         var value = this.options.data[item];
@@ -73,6 +75,7 @@ function insertionSort(options) {
             comp--;
         }
         this.options.data[comp] = value;
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         var sortBar = new Barchart(
             {
@@ -87,6 +90,7 @@ function insertionSort(options) {
 function callSort() {
     insertionSort(
         {
+            canvas: sortVis,
             data: nums
         }
     );
